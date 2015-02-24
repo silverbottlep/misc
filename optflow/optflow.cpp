@@ -13,7 +13,6 @@ using namespace std;
 string dir = "/home/eunbyung/Works/data/ucf101_jpeg/";
 string outdir = "/home/eunbyung/Works/data/ucf101_opt_jpeg/";
 
-
 int main(int argc, char** argv )
 {
     if ( argc != 3 )
@@ -24,7 +23,6 @@ int main(int argc, char** argv )
 
 	std::ifstream filelist;
 	std::ifstream nframeslist;
-
 
 	filelist.open(argv[1],std::ifstream::in);
 	nframeslist.open(argv[2],std::ifstream::in);
@@ -54,7 +52,7 @@ int main(int argc, char** argv )
 			//cout << f1 << endl;
 
 			image[i] = cv::imread(f1,CV_LOAD_IMAGE_GRAYSCALE);
-			image[i].convertTo(image[i], CV_32FC1);
+			image[i].convertTo(image[i], CV_32FC1, 1.0/255.0);
 		}
 
 		// compute optical flow(mean substraction)
@@ -111,5 +109,5 @@ int main(int argc, char** argv )
 		cout << "count: " << ++count << " " << fname << endl;
 	}
 
-    return 0;
+  return 0;
 }
