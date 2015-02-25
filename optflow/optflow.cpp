@@ -92,6 +92,8 @@ int main(int argc, char** argv )
 		}
 		double scale = 255/(max-min);
 
+		string tar_file;
+		string command;
 		// scaling into [0 255]
 		for (int i=0; i<N-1; i++) {
 			char str[6]={0};
@@ -104,8 +106,12 @@ int main(int argc, char** argv )
 
 			imwrite(f1, flow_x_8u[i]);
 			imwrite(f2, flow_y_8u[i]);
+
+			tar_file = tar_file + " " + f1 + " " + f2;
 		}
-		
+
+		command = "tar cf " + outdir + fname + ".tar" + tar_file;
+		cout << command << endl;	
 		cout << "count: " << ++count << " " << fname << endl;
 	}
 
